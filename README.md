@@ -1,11 +1,16 @@
 # Daily To-Do List
 
-**Last updated:** 2026-03-11
+**Last updated:** 2026-03-14
 
 ---
 
 ## Q1 — Urgent + Important *(Do First)*
 > Deadlines, crises, pressing problems
+
+- [ ] **HPE benchmark test** ⬅ *highest priority*
+    - [x] Submit application
+    - [ ] Run benchmark
+    - [ ] Report
 
 - [ ] **Tej's turbulence paper**
     - [ ] Read full draft
@@ -21,14 +26,9 @@
 
 - [ ] **Investigate CR work term**
     - [ ] Compare kinetic flux and CR work term
-    - [ ] Add thermal gas work term in zprof
+    - [x] Add thermal gas work term in zprof
 
 - [ ] **Inspect Sink Particle at Shear Boundary**
-
-- [ ] **HPE benchmark test**
-    - [x] Submit application
-    - [ ] Run benchmark
-    - [ ] Report
 
 ---
 

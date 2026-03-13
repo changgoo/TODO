@@ -19,6 +19,8 @@ jobs:
           python3 - <<'PYEOF'
           import os, json, urllib.request, subprocess
 
+          import re, datetime, zoneinfo
+
           # Fetch issue body via gh CLI
           result = subprocess.run(
               ["gh", "api", f"repos/{os.environ['REPO']}/issues/1", "--jq", ".body"],
@@ -26,30 +28,56 @@ jobs:
           )
           body = result.stdout
 
-          # Extract unchecked Q1 top-level tasks (lines starting with "- [ ]" in Q1 section)
-          in_q1 = False
-          todos = []
-          for line in body.splitlines():
-              if line.startswith("## Q1"):
-                  in_q1 = True
-                  continue
-              if in_q1 and line.startswith("## "):
-                  break
-              if in_q1 and line.startswith("- [ ] "):
-                  todos.append(line[6:].strip())  # strip "- [ ] "
+          def extract_todos(body, section_start, section_end):
+              """Extract unchecked top-level tasks from a section."""
+              in_section = False
+              todos = []
+              for line in body.splitlines():
+                  if line.startswith(f"## {section_start}"):
+                      in_section = True
+                      continue
+                  if in_section and line.startswith(f"## {section_end}"):
+                      break
+                  if in_section and line.startswith("- [ ] "):
+                      label = line[6:].strip()
+                      # Strip markdown: **bold**, *italic*, ⬅ annotations
+                      label = re.sub(r'\*+([^*]+)\*+', r'\1', label)
+                      label = re.sub(r'⬅.*$', '', label).strip()
+                      todos.append(label)
+              return todos
 
-          import datetime, zoneinfo
+          q1_todos = extract_todos(body, "Q1", "Q2")
+          q2_todos = extract_todos(body, "Q2", "Q3")
+
           et = zoneinfo.ZoneInfo("America/New_York")
           date_str = datetime.datetime.now(et).strftime("%A, %B %d %Y")
 
-          if todos:
-              bullet_plain = "\n".join(f"  • {t}" for t in todos)
-              bullet_html  = "\n".join(f"<li>{t}</li>" for t in todos)
-              plain = f"Good morning! Here are your Q1 priorities for {date_str}:\n\n{bullet_plain}\n\nGood luck today!"
-              html  = f"<p>Good morning! Here are your <strong>Q1 priorities</strong> for {date_str}:</p><ul>{bullet_html}</ul><p>Good luck today!</p>"
-          else:
-              plain = f"Good morning! All Q1 tasks are complete as of {date_str}. Great work!"
-              html  = f"<p>Good morning! All Q1 tasks are complete as of {date_str}. Great work!</p>"
+          def section_plain(title, todos, empty_msg):
+              if todos:
+                  bullets = "\n".join(f"  • {t}" for t in todos)
+                  return f"{title}:\n{bullets}"
+              return f"{title}:\n  {empty_msg}"
+
+          def section_html(title, todos, empty_msg):
+              if todos:
+                  items = "\n".join(f"<li>{t}</li>" for t in todos)
+                  return f"<h3 style='margin-bottom:4px'>{title}</h3><ul style='margin-top:4px'>{items}</ul>"
+              return f"<h3 style='margin-bottom:4px'>{title}</h3><p><em>{empty_msg}</em></p>"
+
+          plain = (
+              f"Good morning! Here are your priorities for {date_str}:\n\n"
+              + section_plain("Q1 — Urgent + Important (Do First)", q1_todos, "All done!") + "\n\n"
+              + section_plain("Q2 — Important, Not Urgent (Schedule)", q2_todos, "Nothing scheduled.") + "\n\n"
+              + "Good luck today!"
+          )
+          html = f"""
+          <div style="font-family:sans-serif;max-width:600px;margin:auto">
+            <p>Good morning! Here are your priorities for <strong>{date_str}</strong>:</p>
+            {section_html("Q1 — Urgent + Important", q1_todos, "All done!")}
+            {section_html("Q2 — Important, Not Urgent", q2_todos, "Nothing scheduled.")}
+            <p style="color:#888;font-size:12px">Good luck today!</p>
+          </div>
+          """
 
           payload = {
               "personalizations": [{"to": [{"email": os.environ["TO_EMAIL"]}]}],

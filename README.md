@@ -7,11 +7,6 @@
 ## Q1 — Urgent + Important *(Do First)*
 > Deadlines, crises, pressing problems
 
-- [ ] **HPE benchmark test** ⬅ *highest priority*
-    - [x] Submit application
-    - [ ] Run benchmark
-    - [ ] Report
-
 - [ ] **Tej's turbulence paper**
     - [x] §1 Introduction
     - [x] §2 Methods and Models
@@ -131,6 +126,7 @@
 > Move finished tasks here at end of day
 
 - [x] Cosmia's paper — reviewed full draft (2026-03-11)
+- [x] HPE benchmark test — submitted, ran, and reported (2026-03-13)
 
 ---
 

@@ -1,0 +1,59 @@
+name: Daily Q1 Reminder
+
+on:
+  schedule:
+    - cron: '0 15 * * 1-5'  # 11 AM EDT (UTC-4), weekdays; adjust to '0 16 * * 1-5' in winter (EST)
+  workflow_dispatch:          # allow manual trigger for testing
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Q1 todos from GitHub issue
+        id: todos
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Fetch issue body
+          BODY=$(gh api repos/${{ github.repository }}/issues/1 --jq '.body')
+
+          # Extract Q1 section (between "## Q1" and the next "##")
+          Q1=$(echo "$BODY" | awk '/^## Q1/,/^## Q2/' | grep '^\- \[ \]' | sed 's/- \[ \] /• /')
+
+          if [ -z "$Q1" ]; then
+            Q1="(All Q1 tasks are complete!)"
+          fi
+
+          # Save as multiline output
+          {
+            echo "q1_todos<<EOF"
+            echo "$Q1"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Send email via SendGrid
+        env:
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          TO_EMAIL: ${{ secrets.SENDGRID_TO_EMAIL }}
+        run: |
+          DATE=$(TZ="America/New_York" date "+%A, %B %d %Y")
+          TODOS="${{ steps.todos.outputs.q1_todos }}"
+
+          # Build plain-text and HTML content
+          PLAIN="Good morning! Here are your Q1 priorities for ${DATE}:\n\n${TODOS}\n\nGood luck today!"
+          HTML="<p>Good morning! Here are your <strong>Q1 priorities</strong> for ${DATE}:</p><ul>$(echo "$TODOS" | sed 's/• /<li>/g' | sed 's/$/<\/li>/g')</ul><p>Good luck today!</p>"
+
+          curl --silent --fail --output /dev/null \
+            --request POST \
+            --url https://api.sendgrid.com/v3/mail/send \
+            --header "Authorization: Bearer ${SENDGRID_API_KEY}" \
+            --header "Content-Type: application/json" \
+            --data "{
+              \"personalizations\": [{\"to\": [{\"email\": \"${TO_EMAIL}\"}]}],
+              \"from\": {\"email\": \"${TO_EMAIL}\", \"name\": \"Daily TODO Reminder\"},
+              \"subject\": \"Q1 Priorities for ${DATE}\",
+              \"content\": [
+                {\"type\": \"text/plain\", \"value\": \"$(echo -e "$PLAIN" | sed 's/"/\\"/g')\"},
+                {\"type\": \"text/html\",  \"value\": \"$(echo "$HTML"   | sed 's/"/\\"/g')\"}
+              ]
+            }"

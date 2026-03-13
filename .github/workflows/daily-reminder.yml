@@ -9,51 +9,71 @@ jobs:
   remind:
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch Q1 todos from GitHub issue
-        id: todos
+      - name: Fetch Q1 todos and send email
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          # Fetch issue body
-          BODY=$(gh api repos/${{ github.repository }}/issues/1 --jq '.body')
-
-          # Extract Q1 section (between "## Q1" and the next "##")
-          Q1=$(echo "$BODY" | awk '/^## Q1/,/^## Q2/' | grep '^\- \[ \]' | sed 's/- \[ \] /• /')
-
-          if [ -z "$Q1" ]; then
-            Q1="(All Q1 tasks are complete!)"
-          fi
-
-          # Save as multiline output
-          {
-            echo "q1_todos<<EOF"
-            echo "$Q1"
-            echo "EOF"
-          } >> "$GITHUB_OUTPUT"
-
-      - name: Send email via SendGrid
-        env:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
           TO_EMAIL: ${{ secrets.SENDGRID_TO_EMAIL }}
+          REPO: ${{ github.repository }}
         run: |
-          DATE=$(TZ="America/New_York" date "+%A, %B %d %Y")
-          TODOS="${{ steps.todos.outputs.q1_todos }}"
+          python3 - <<'PYEOF'
+          import os, json, urllib.request, subprocess
 
-          # Build plain-text and HTML content
-          PLAIN="Good morning! Here are your Q1 priorities for ${DATE}:\n\n${TODOS}\n\nGood luck today!"
-          HTML="<p>Good morning! Here are your <strong>Q1 priorities</strong> for ${DATE}:</p><ul>$(echo "$TODOS" | sed 's/• /<li>/g' | sed 's/$/<\/li>/g')</ul><p>Good luck today!</p>"
+          # Fetch issue body via gh CLI
+          result = subprocess.run(
+              ["gh", "api", f"repos/{os.environ['REPO']}/issues/1", "--jq", ".body"],
+              capture_output=True, text=True, check=True
+          )
+          body = result.stdout
 
-          curl --silent --fail --output /dev/null \
-            --request POST \
-            --url https://api.sendgrid.com/v3/mail/send \
-            --header "Authorization: Bearer ${SENDGRID_API_KEY}" \
-            --header "Content-Type: application/json" \
-            --data "{
-              \"personalizations\": [{\"to\": [{\"email\": \"${TO_EMAIL}\"}]}],
-              \"from\": {\"email\": \"${TO_EMAIL}\", \"name\": \"Daily TODO Reminder\"},
-              \"subject\": \"Q1 Priorities for ${DATE}\",
-              \"content\": [
-                {\"type\": \"text/plain\", \"value\": \"$(echo -e "$PLAIN" | sed 's/"/\\"/g')\"},
-                {\"type\": \"text/html\",  \"value\": \"$(echo "$HTML"   | sed 's/"/\\"/g')\"}
-              ]
-            }"
+          # Extract unchecked Q1 top-level tasks (lines starting with "- [ ]" in Q1 section)
+          in_q1 = False
+          todos = []
+          for line in body.splitlines():
+              if line.startswith("## Q1"):
+                  in_q1 = True
+                  continue
+              if in_q1 and line.startswith("## "):
+                  break
+              if in_q1 and line.startswith("- [ ] "):
+                  todos.append(line[6:].strip())  # strip "- [ ] "
+
+          import datetime, zoneinfo
+          et = zoneinfo.ZoneInfo("America/New_York")
+          date_str = datetime.datetime.now(et).strftime("%A, %B %d %Y")
+
+          if todos:
+              bullet_plain = "\n".join(f"  • {t}" for t in todos)
+              bullet_html  = "\n".join(f"<li>{t}</li>" for t in todos)
+              plain = f"Good morning! Here are your Q1 priorities for {date_str}:\n\n{bullet_plain}\n\nGood luck today!"
+              html  = f"<p>Good morning! Here are your <strong>Q1 priorities</strong> for {date_str}:</p><ul>{bullet_html}</ul><p>Good luck today!</p>"
+          else:
+              plain = f"Good morning! All Q1 tasks are complete as of {date_str}. Great work!"
+              html  = f"<p>Good morning! All Q1 tasks are complete as of {date_str}. Great work!</p>"
+
+          payload = {
+              "personalizations": [{"to": [{"email": os.environ["TO_EMAIL"]}]}],
+              "from": {"email": os.environ["TO_EMAIL"], "name": "Daily TODO Reminder"},
+              "subject": f"Q1 Priorities for {date_str}",
+              "content": [
+                  {"type": "text/plain", "value": plain},
+                  {"type": "text/html",  "value": html},
+              ],
+          }
+
+          req = urllib.request.Request(
+              "https://api.sendgrid.com/v3/mail/send",
+              data=json.dumps(payload).encode(),
+              headers={
+                  "Authorization": f"Bearer {os.environ['SENDGRID_API_KEY']}",
+                  "Content-Type": "application/json",
+              },
+              method="POST",
+          )
+          try:
+              with urllib.request.urlopen(req) as resp:
+                  print(f"Email sent! Status: {resp.status}")
+          except urllib.error.HTTPError as e:
+              print(f"SendGrid error {e.code}: {e.read().decode()}")
+              raise
+          PYEOF

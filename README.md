@@ -13,8 +13,25 @@
     - [ ] Report
 
 - [ ] **Tej's turbulence paper**
-    - [ ] Read full draft
-    - [ ] Annotate / leave inline comments
+    - [x] §1 Introduction
+    - [x] §2 Methods and Models
+        - [x] §2.1 Governing Equations, Numerical Methods, and Initial Conditions
+        - [x] §2.2 Point Source Driving
+        - [x] §2.3 Fourier Space Driving
+        - [x] §2.4 Models
+    - [x] §3 Comparison of Driving Methods
+        - [x] §3.1 Global Statistics
+        - [x] §3.2 Probability Density Functions and Joint Statistics
+        - [x] §3.3 Gas Density and Velocity Power Spectra
+    - [ ] §4 FSD Sensitivity to Correlation Time
+        - [ ] §4.1 Qualitative Differences
+        - [ ] §4.2 Time Evolution of Variables
+        - [ ] §4.3 Probability Density Function Dependence on Correlation Time
+    - [ ] §5 Summary and Discussion
+    - [ ] §6 Limitations and Scope
+    - [ ] §7 Conclusion
+    - [ ] Appendix: Resolution Dependence
+    - [ ] Appendix: Limitations to Momentum Injection Method
     - [ ] Write detailed feedback summary
     - [ ] Send feedback to Tej
 

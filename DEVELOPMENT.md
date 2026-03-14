@@ -16,10 +16,16 @@
 
 **Required GitHub secret:** `SENDGRID_API_KEY` (already in use by `daily-reminder.yml`)
 
+**Skip logic in `sfir_email.py`:**
+- No speaker set → silently skip (no email)
+- Speaker email missing → notify organizer (`changgoo@princeton.edu`) and skip
+- Title+abstract already filled → skip (info already received, no need to re-ask speaker)
+- Title/abstract missing on `friday`/`dayof` → notify organizer and still send announcement with "TBD"
+
 **Notes:**
-- Speaker reminders only fire if `email` field is populated in `SFIR.json`
 - All emails sent from `changgoo@princeton.edu` via SendGrid
-- The Feb 16, 2026 talk is at 3 PM ET — trigger `sfir-day-of-reminder` manually that week
+- Spring 2026 talks are at 3 PM ET; day-of cron fires at 2 PM ET (1 hour before)
+- Fall 2025 is complete; cron schedule is tuned for Spring 2026 onwards
 
 ---
 

@@ -1,4 +1,4 @@
-# SFIR Seminar Schedule 2025–2026
+# Star Formation/ISM Rendezvous (SFIR) Schedule 2025–2026
 
 **Location:** Dome Room (unless noted)
 **Time:** 4:00 PM (unless noted)

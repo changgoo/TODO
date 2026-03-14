@@ -8,7 +8,7 @@ subject: "SFIR Seminar — Your Talk on {{date}} (Title & Abstract Needed)"
 
 Dear {{speaker_name}},
 
-We are looking forward to your talk at the Star Formation in the Radio (SFIR) seminar next week!
+We are looking forward to your talk at the Star Formation/ISM Rendezvous (SFIR) seminar next week!
 
 **Date:** {{label}}
 **Time:** {{time}}

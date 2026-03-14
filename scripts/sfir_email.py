@@ -129,6 +129,9 @@ def main():
         if not to_email:
             print(f"No email address for {talk['speaker']}, skipping.")
             return
+        if talk.get("title") and talk.get("abstract"):
+            print(f"Talk info already received from {talk['speaker']}, skipping.")
+            return
         template = os.path.join(templates, "speaker_reminder.md")
 
     elif args.mode == "friday":

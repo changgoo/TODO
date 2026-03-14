@@ -132,12 +132,7 @@ def main():
         target = today + timedelta(days=7)
         talk = find_talk(schedule, target)
         if not talk or not talk.get("speaker"):
-            notify_missing(
-                f"No speaker set for {target}",
-                f"The SFIR talk on {target} has no speaker assigned in SFIR.json. "
-                f"Please update the schedule.",
-                args.dry_run,
-            )
+            print(f"No speaker set for {target}, skipping.")
             return
         to_email = talk.get("email")
         if not to_email:
@@ -158,12 +153,7 @@ def main():
         target = today + timedelta(days=3)
         talk = find_talk(schedule, target)
         if not talk or not talk.get("speaker"):
-            notify_missing(
-                f"No speaker set for Monday {target}",
-                f"The SFIR talk on {target} has no speaker assigned in SFIR.json. "
-                f"Friday announcement was not sent.",
-                args.dry_run,
-            )
+            print(f"No speaker set for Monday {target}, skipping.")
             return
         if not talk.get("title") or not talk.get("abstract"):
             notify_missing(
@@ -178,12 +168,7 @@ def main():
     elif args.mode == "dayof":
         talk = find_talk(schedule, today)
         if not talk or not talk.get("speaker"):
-            notify_missing(
-                f"No speaker set for today ({today})",
-                f"The SFIR talk today ({today}) has no speaker assigned in SFIR.json. "
-                f"Day-of reminder was not sent.",
-                args.dry_run,
-            )
+            print(f"No speaker set for today ({today}), skipping.")
             return
         if not talk.get("title") or not talk.get("abstract"):
             notify_missing(

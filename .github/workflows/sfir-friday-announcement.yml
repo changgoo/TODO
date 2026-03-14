@@ -1,0 +1,17 @@
+name: SFIR Friday Announcement
+
+on:
+  schedule:
+    - cron: '0 13 * * 5'  # 9 AM ET every Friday (EDT=UTC-4; adjust to '0 14' in winter EST)
+  workflow_dispatch:
+
+jobs:
+  announce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Send Friday seminar announcement to sfir@princeton.edu
+        env:
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+        run: python3 scripts/sfir_email.py --mode friday

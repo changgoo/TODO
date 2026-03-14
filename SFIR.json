@@ -201,7 +201,7 @@
         {
           "date": "2026-02-02",
           "label": "Monday, February 2",
-          "time": "4:00 PM",
+          "time": "3:00 PM",
           "speaker": null,
           "affiliation": null,
           "email": null,
@@ -214,7 +214,7 @@
         {
           "date": "2026-02-09",
           "label": "Monday, February 9",
-          "time": "4:00 PM",
+          "time": "3:00 PM",
           "speaker": null,
           "affiliation": null,
           "email": null,
@@ -240,7 +240,7 @@
         {
           "date": "2026-02-23",
           "label": "Monday, February 23",
-          "time": "4:00 PM",
+          "time": "3:00 PM",
           "speaker": null,
           "affiliation": null,
           "email": null,
@@ -253,7 +253,7 @@
         {
           "date": "2026-03-02",
           "label": "Monday, March 2",
-          "time": "4:00 PM",
+          "time": "3:00 PM",
           "speaker": null,
           "affiliation": null,
           "email": null,
@@ -266,7 +266,7 @@
         {
           "date": "2026-03-09",
           "label": "Monday, March 9",
-          "time": "4:00 PM",
+          "time": "3:00 PM",
           "speaker": null,
           "affiliation": null,
           "email": null,
@@ -279,7 +279,7 @@
         {
           "date": "2026-03-16",
           "label": "Monday, March 16",
-          "time": "4:00 PM",
+          "time": "3:00 PM",
           "speaker": null,
           "affiliation": null,
           "email": null,
@@ -292,7 +292,7 @@
         {
           "date": "2026-03-23",
           "label": "Monday, March 23",
-          "time": "4:00 PM",
+          "time": "3:00 PM",
           "speaker": "Osase Omoruyi",
           "affiliation": null,
           "email": "osase@princeton.edu",
@@ -305,7 +305,7 @@
         {
           "date": "2026-03-30",
           "label": "Monday, March 30",
-          "time": "4:00 PM",
+          "time": "3:00 PM",
           "speaker": null,
           "affiliation": null,
           "email": null,
@@ -318,7 +318,7 @@
         {
           "date": "2026-04-06",
           "label": "Monday, April 6",
-          "time": "4:00 PM",
+          "time": "3:00 PM",
           "speaker": null,
           "affiliation": null,
           "email": null,
@@ -331,7 +331,7 @@
         {
           "date": "2026-04-13",
           "label": "Monday, April 13",
-          "time": "4:00 PM",
+          "time": "3:00 PM",
           "speaker": "Nadine Soliman",
           "affiliation": "IAS",
           "email": "nsoliman@ias.edu",
@@ -344,7 +344,7 @@
         {
           "date": "2026-04-20",
           "label": "Monday, April 20",
-          "time": "4:00 PM",
+          "time": "3:00 PM",
           "speaker": "Shyam Menon",
           "affiliation": "CCA",
           "email": null,
@@ -357,7 +357,7 @@
         {
           "date": "2026-04-27",
           "label": "Monday, April 27",
-          "time": "4:00 PM",
+          "time": "3:00 PM",
           "speaker": "Zhaohuan Zhu",
           "affiliation": "UNLV/IAS",
           "email": null,
@@ -370,7 +370,7 @@
         {
           "date": "2026-05-04",
           "label": "Monday, May 4",
-          "time": "4:00 PM",
+          "time": "3:00 PM",
           "speaker": "Yurina Nakazato",
           "affiliation": "CCA",
           "email": "ynakazato@flatironinstitute.org",
@@ -383,7 +383,7 @@
         {
           "date": "2026-05-11",
           "label": "Monday, May 11",
-          "time": "4:00 PM",
+          "time": "3:00 PM",
           "speaker": "Mark Krumholz",
           "affiliation": "ANU",
           "email": "mark.krumholz@anu.edu.au",

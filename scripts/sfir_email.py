@@ -109,6 +109,15 @@ def send_email(to_email, subject, body):
         raise
 
 
+def notify_missing(subject, message, dry_run=False):
+    """Send a warning email to the organizer about missing info."""
+    print(f"WARNING: {message}")
+    if dry_run:
+        print(f"[dry-run] Would notify {FROM_EMAIL}: {subject}")
+        return
+    send_email(FROM_EMAIL, f"[SFIR] {subject}", message)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", choices=["speaker", "friday", "dayof"], required=True)
@@ -123,11 +132,21 @@ def main():
         target = today + timedelta(days=7)
         talk = find_talk(schedule, target)
         if not talk or not talk.get("speaker"):
-            print(f"No talk with a speaker found for {target}, skipping.")
+            notify_missing(
+                f"No speaker set for {target}",
+                f"The SFIR talk on {target} has no speaker assigned in SFIR.json. "
+                f"Please update the schedule.",
+                args.dry_run,
+            )
             return
         to_email = talk.get("email")
         if not to_email:
-            print(f"No email address for {talk['speaker']}, skipping.")
+            notify_missing(
+                f"Missing email for {talk['speaker']} ({target})",
+                f"{talk['speaker']}'s talk is in 7 days ({target}) but no email address "
+                f"is set in SFIR.json. Please add it so the reminder can be sent.",
+                args.dry_run,
+            )
             return
         if talk.get("title") and talk.get("abstract"):
             print(f"Talk info already received from {talk['speaker']}, skipping.")
@@ -139,16 +158,40 @@ def main():
         target = today + timedelta(days=3)
         talk = find_talk(schedule, target)
         if not talk or not talk.get("speaker"):
-            print(f"No talk with a speaker found for {target}, skipping.")
+            notify_missing(
+                f"No speaker set for Monday {target}",
+                f"The SFIR talk on {target} has no speaker assigned in SFIR.json. "
+                f"Friday announcement was not sent.",
+                args.dry_run,
+            )
             return
+        if not talk.get("title") or not talk.get("abstract"):
+            notify_missing(
+                f"Missing title/abstract for {talk['speaker']} ({target})",
+                f"{talk['speaker']}'s talk is on Monday ({target}) but title or abstract "
+                f"is still missing in SFIR.json. Friday announcement was sent with 'TBD'.",
+                args.dry_run,
+            )
         to_email = SFIR_LIST
         template = os.path.join(templates, "friday_announcement.md")
 
     elif args.mode == "dayof":
         talk = find_talk(schedule, today)
         if not talk or not talk.get("speaker"):
-            print(f"No talk with a speaker found for {today}, skipping.")
+            notify_missing(
+                f"No speaker set for today ({today})",
+                f"The SFIR talk today ({today}) has no speaker assigned in SFIR.json. "
+                f"Day-of reminder was not sent.",
+                args.dry_run,
+            )
             return
+        if not talk.get("title") or not talk.get("abstract"):
+            notify_missing(
+                f"Missing title/abstract for {talk['speaker']} (today)",
+                f"{talk['speaker']}'s talk is today ({today}) but title or abstract "
+                f"is still missing in SFIR.json. Day-of reminder was sent with 'TBD'.",
+                args.dry_run,
+            )
         to_email = SFIR_LIST
         template = os.path.join(templates, "day_of_reminder.md")
 

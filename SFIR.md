@@ -1,8 +1,8 @@
 # Star Formation/ISM Rendezvous (SFIR) Schedule 2025–2026
 
-**Location:** Dome Room (unless noted)
-**Time:** 3:00 PM (unless noted)
-**Zoom:** https://princeton.zoom.us/j/99592759045
+- **Location:** Dome Room (unless noted)
+- **Time:** 3:00 PM (unless noted)
+- **Zoom:** https://princeton.zoom.us/j/99592759045
 
 ---
 

@@ -28,5 +28,4 @@ A reminder that we have a seminar talk on Monday:
 We hope to see many of you there!
 
 Best,
-{{host_name}}
-SFIR Seminar
+{{coordinator_name}}

@@ -17,10 +17,9 @@ We are looking forward to your talk at the Star Formation/ISM Rendezvous (SFIR) 
 
 Could you please send us your **talk title and abstract** at your earliest convenience? We would like to advertise your talk to the group.
 
-Please reply to this email or send them directly to {{coordinator_name}} ({{coordinator_email}}).
+Please reply to this email.
 
 Looking forward to seeing you!
 
 Best,
 {{host_name}}
-on behalf of the SFIR Seminar organizing committee

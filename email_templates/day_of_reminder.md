@@ -3,7 +3,7 @@ id: day_of_reminder
 trigger: 1 hour before talk
 from: "changgoo@princeton.edu"
 to: "sfir@princeton.edu"
-subject: "SFIR Seminar — Starting in 1 Hour: {{speaker_name}}, \"{{title}}\""
+subject: "SFIR Seminar by {{speaker_name}} — Starting in 1 Hour"
 ---
 
 Dear SFIR members,
@@ -19,4 +19,4 @@ Just a reminder that today's SFIR seminar starts in **one hour**:
 See you there!
 
 Best,
-SFIR Seminar
+{{coordinator_name}}

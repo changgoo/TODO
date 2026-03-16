@@ -24,8 +24,10 @@
 
 **Notes:**
 - All emails sent from `changgoo@princeton.edu` via SendGrid
+- Coordinator in `SFIR.json` is Chang-Goo Kim (`changgoo@princeton.edu`)
 - Spring 2026 talks are at 3 PM ET; day-of cron fires at 2 PM ET (1 hour before)
 - Fall 2025 is complete; cron schedule is tuned for Spring 2026 onwards
+- GitHub Actions cron runs in **UTC**; `0 13 * * *` = 9 AM EDT (UTC-4); change to `0 14` in winter EST (UTC-5)
 
 ---
 

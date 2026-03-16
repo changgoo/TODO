@@ -36,6 +36,20 @@
 
 - [ ] **Inspect Sink Particle at Shear Boundary**
 
+- [ ] **Review ApJ paper** *(next week)*
+    - [ ] Read abstract, intro, and methods
+    - [ ] Read results and figures
+    - [ ] Read discussion and conclusions
+    - [ ] Write referee report
+    - [ ] Submit review
+
+- [ ] **Review MNRAS paper** *(next week)*
+    - [ ] Read abstract, intro, and methods
+    - [ ] Read results and figures
+    - [ ] Read discussion and conclusions
+    - [ ] Write referee report
+    - [ ] Submit review
+
 ---
 
 ## Q2 — Important, Not Urgent *(Schedule)*
@@ -52,20 +66,6 @@
     - [ ] Gather relevant results / updates to share
     - [ ] Prepare slides or reference materials
     - [ ] Send agenda to attendees
-
-- [ ] **Review ApJ paper** *(next week)*
-    - [ ] Read abstract, intro, and methods
-    - [ ] Read results and figures
-    - [ ] Read discussion and conclusions
-    - [ ] Write referee report
-    - [ ] Submit review
-
-- [ ] **Review MNRAS paper** *(next week)*
-    - [ ] Read abstract, intro, and methods
-    - [ ] Read results and figures
-    - [ ] Read discussion and conclusions
-    - [ ] Write referee report
-    - [ ] Submit review
 
 - [ ] **Write TIGRESS-NCR-Paper II**
     - [ ] Finalize outline and section structure

@@ -1,6 +1,6 @@
 # Daily To-Do List
 
-**Last updated:** 2026-03-14
+**Last updated:** 2026-03-16
 
 ---
 
@@ -29,12 +29,6 @@
     - [ ] Appendix: Limitations to Momentum Injection Method
     - [ ] Write detailed feedback summary
     - [ ] Send feedback to Tej
-
-- [ ] **Sarah's paper revision**
-    - [ ] Read current draft
-    - [ ] Annotate / leave inline comments
-    - [ ] Write feedback summary
-    - [ ] Send revisions to Sarah
 
 - [ ] **Investigate CR work term**
     - [ ] Compare kinetic flux and CR work term
@@ -127,6 +121,7 @@
 
 - [x] Cosmia's paper — reviewed full draft (2026-03-11)
 - [x] HPE benchmark test — submitted, ran, and reported (2026-03-13)
+- [x] Sarah's paper revision — completed (2026-03-16)
 
 ---
 

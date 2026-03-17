@@ -3,6 +3,7 @@
 
 Usage:
   python scripts/sfir_email.py --mode speaker   # 7-day advance notice to speaker
+  python scripts/sfir_email.py --mode speaker --speaker "Krumholz"  # target a specific speaker
   python scripts/sfir_email.py --mode friday    # Friday announcement to sfir@
   python scripts/sfir_email.py --mode dayof     # 1-hour-before reminder to sfir@
   python scripts/sfir_email.py --mode speaker --dry-run   # print without sending
@@ -39,6 +40,26 @@ def find_talk(schedule, target_date):
         if talk.get("date") == target_date.isoformat():
             return talk
     return None
+
+
+def find_talk_by_speaker(schedule, name):
+    """Find talks matching a speaker name (case-insensitive, partial match).
+
+    Matches against first name, last name, or full name.
+    Returns all matching talks sorted by date (future talks first).
+    """
+    name_lower = name.lower()
+    matches = []
+    for talk in all_talks(schedule):
+        speaker = talk.get("speaker") or ""
+        if not speaker:
+            continue
+        speaker_lower = speaker.lower()
+        parts = speaker_lower.split()
+        if name_lower == speaker_lower or name_lower in parts:
+            matches.append(talk)
+    matches.sort(key=lambda t: t.get("date", ""))
+    return matches
 
 
 def render_template(template_path, talk, schedule):
@@ -84,10 +105,13 @@ def render_template(template_path, talk, schedule):
     return subject, body
 
 
-def send_email(to_email, subject, body):
+def send_email(to_email, subject, body, cc_email=None):
     api_key = os.environ["SENDGRID_API_KEY"]
+    personalization = {"to": [{"email": to_email}]}
+    if cc_email:
+        personalization["cc"] = [{"email": cc_email}]
     payload = {
-        "personalizations": [{"to": [{"email": to_email}]}],
+        "personalizations": [personalization],
         "from": {"email": FROM_EMAIL, "name": FROM_NAME},
         "subject": subject,
         "content": [{"type": "text/plain", "value": body}],
@@ -121,24 +145,47 @@ def notify_missing(subject, message, dry_run=False):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", choices=["speaker", "friday", "dayof"], required=True)
+    parser.add_argument("--speaker", type=str, default=None,
+                        help="Speaker name to target (first, last, or full; case-insensitive). "
+                             "Only used with --mode speaker.")
     parser.add_argument("--dry-run", action="store_true", help="Print email without sending")
     args = parser.parse_args()
+
+    if args.speaker and args.mode != "speaker":
+        parser.error("--speaker can only be used with --mode speaker")
 
     today = datetime.now(TZ).date()
     schedule = load_schedule()
     templates = os.path.join(REPO_ROOT, "email_templates")
 
     if args.mode == "speaker":
-        target = today + timedelta(days=7)
-        talk = find_talk(schedule, target)
-        if not talk or not talk.get("speaker"):
-            print(f"No speaker set for {target}, skipping.")
-            return
+        if args.speaker:
+            matches = find_talk_by_speaker(schedule, args.speaker)
+            if not matches:
+                print(f"No speaker matching '{args.speaker}' found in schedule.")
+                return
+            if len(matches) > 1:
+                print(f"Multiple talks found for '{args.speaker}':")
+                for m in matches:
+                    print(f"  {m['date']} — {m['speaker']}")
+                # Use the next upcoming talk (or latest if all past)
+                future = [m for m in matches if m["date"] >= today.isoformat()]
+                talk = future[0] if future else matches[-1]
+                print(f"Using: {talk['date']} — {talk['speaker']}")
+            else:
+                talk = matches[0]
+        else:
+            target = today + timedelta(days=7)
+            talk = find_talk(schedule, target)
+            if not talk or not talk.get("speaker"):
+                print(f"No speaker set for {target}, skipping.")
+                return
         to_email = talk.get("email")
         if not to_email:
+            target = talk.get("date", "unknown date")
             notify_missing(
                 f"Missing email for {talk['speaker']} ({target})",
-                f"{talk['speaker']}'s talk is in 7 days ({target}) but no email address "
+                f"{talk['speaker']}'s talk is on {target} but no email address "
                 f"is set in SFIR.json. Please add it so the reminder can be sent.",
                 args.dry_run,
             )
@@ -181,15 +228,18 @@ def main():
         template = os.path.join(templates, "day_of_reminder.md")
 
     subject, body = render_template(template, talk, schedule)
+    cc_email = FROM_EMAIL
 
     if args.dry_run:
         print(f"To:      {to_email}")
+        if cc_email:
+            print(f"CC:      {cc_email}")
         print(f"Subject: {subject}")
         print("─" * 60)
         print(body)
         return
 
-    send_email(to_email, subject, body)
+    send_email(to_email, subject, body, cc_email=cc_email)
 
 
 if __name__ == "__main__":

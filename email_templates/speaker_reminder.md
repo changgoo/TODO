@@ -10,14 +10,12 @@ Dear {{speaker_name}},
 
 We are looking forward to your talk at the Star Formation/ISM Rendezvous (SFIR) seminar next week!
 
-**Date:** {{label}}
-**Time:** {{time}}
-**Location:** {{location}}, Princeton University
-**Zoom:** https://princeton.zoom.us/j/99592759045
+Date: {{label}}
+Time: {{time}}
+Location: {{location}}
+Zoom: https://princeton.zoom.us/j/99592759045
 
-Could you please send us your **talk title and abstract** at your earliest convenience? We would like to advertise your talk to the group.
-
-Please reply to this email.
+Could you please send us your talk title and abstract at your earliest convenience? We would like to advertise your talk to the group.
 
 Looking forward to seeing you!
 

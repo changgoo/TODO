@@ -13,7 +13,7 @@ Just a reminder that today's SFIR seminar starts in **one hour**:
 **Speaker:** {{speaker_name}} ({{affiliation}})
 **Title:** {{title}}
 **Time:** {{time}} today ({{label}})
-**Location:** {{location}}, Princeton University
+**Location:** {{location}}
 **Zoom:** https://princeton.zoom.us/j/99592759045
 
 See you there!

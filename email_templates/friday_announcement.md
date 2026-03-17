@@ -14,7 +14,7 @@ A reminder that we have a seminar talk on Monday:
 **Title:** {{title}}
 **Date:** {{label}}
 **Time:** {{time}}
-**Location:** {{location}}, Princeton University
+**Location:** {{location}}
 **Zoom:** https://princeton.zoom.us/j/99592759045
 
 ---

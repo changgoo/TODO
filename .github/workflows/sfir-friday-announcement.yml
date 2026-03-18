@@ -14,4 +14,4 @@ jobs:
       - name: Send Friday seminar announcement to sfir@princeton.edu
         env:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
-        run: python3 scripts/sfir_email.py --mode friday
+        run: python3 SFIR/sfir_email.py --mode friday

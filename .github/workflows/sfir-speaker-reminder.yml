@@ -14,4 +14,4 @@ jobs:
       - name: Send 7-day advance reminder to speaker
         env:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
-        run: python3 scripts/sfir_email.py --mode speaker
+        run: python3 SFIR/sfir_email.py --mode speaker

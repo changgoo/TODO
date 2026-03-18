@@ -26,7 +26,7 @@ REPO_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 
 
 def load_schedule():
-    with open(os.path.join(REPO_ROOT, "SFIR.json")) as f:
+    with open(os.path.join(REPO_ROOT, "SFIR", "SFIR.json")) as f:
         return json.load(f)
 
 
@@ -156,7 +156,7 @@ def main():
 
     today = datetime.now(TZ).date()
     schedule = load_schedule()
-    templates = os.path.join(REPO_ROOT, "email_templates")
+    templates = os.path.join(REPO_ROOT, "SFIR", "email_templates")
 
     if args.mode == "speaker":
         if args.speaker:

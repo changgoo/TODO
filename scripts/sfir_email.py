@@ -105,11 +105,11 @@ def render_template(template_path, talk, schedule):
     return subject, body
 
 
-def send_email(to_email, subject, body, cc_email=None):
+def send_email(to_email, subject, body, cc_emails=None):
     api_key = os.environ["SENDGRID_API_KEY"]
     personalization = {"to": [{"email": to_email}]}
-    if cc_email:
-        personalization["cc"] = [{"email": cc_email}]
+    if cc_emails:
+        personalization["cc"] = [{"email": e} for e in cc_emails]
     payload = {
         "personalizations": [personalization],
         "from": {"email": FROM_EMAIL, "name": FROM_NAME},
@@ -228,18 +228,19 @@ def main():
         template = os.path.join(templates, "day_of_reminder.md")
 
     subject, body = render_template(template, talk, schedule)
-    cc_email = FROM_EMAIL
+    cc_emails = [FROM_EMAIL]
+    if args.mode in ("friday", "dayof") and talk.get("email"):
+        cc_emails.append(talk["email"])
 
     if args.dry_run:
         print(f"To:      {to_email}")
-        if cc_email:
-            print(f"CC:      {cc_email}")
+        print(f"CC:      {', '.join(cc_emails)}")
         print(f"Subject: {subject}")
         print("─" * 60)
         print(body)
         return
 
-    send_email(to_email, subject, body, cc_email=cc_email)
+    send_email(to_email, subject, body, cc_emails=cc_emails)
 
 
 if __name__ == "__main__":

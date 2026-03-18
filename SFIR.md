@@ -17,7 +17,7 @@
 | Mon, Mar 2 | — | — | — | |
 | Mon, Mar 9 | — | — | — | Spring Recess |
 | Mon, Mar 16 | — | — | — | Prospectives' visit |
-| Mon, Mar 23 | Osase Omoruyi | Chang-Goo Kim | — | |
+| Mon, Mar 23 | Osase Omoruyi | Chang-Goo Kim | Where's the Gas Going? Observational and Theoretical Perspectives on Ejective & Preventative Feedback in Galaxies | |
 | Mon, Mar 30 | — | — | — | CGK away |
 | Mon, Apr 6 | — | — | — | |
 | Mon, Apr 13 | Nadine Soliman (IAS) | Chang-Goo Kim | — | |

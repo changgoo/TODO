@@ -36,12 +36,6 @@
 
 - [ ] **Inspect Sink Particle at Shear Boundary**
 
-- [ ] **Review ApJ paper** *(next week)*
-    - [ ] Read abstract, intro, and methods
-    - [ ] Read results and figures
-    - [ ] Read discussion and conclusions
-    - [ ] Write referee report
-    - [ ] Submit review
 
 - [ ] **Review MNRAS paper** *(next week)*
     - [ ] Read abstract, intro, and methods
@@ -119,6 +113,7 @@
 ## Completed
 > Move finished tasks here at end of day
 
+- [x] Review ApJ paper — submitted referee report (2026-03-18)
 - [x] Cosmia's paper — reviewed full draft (2026-03-11)
 - [x] HPE benchmark test — submitted, ran, and reported (2026-03-13)
 - [x] Sarah's paper revision — completed (2026-03-16)

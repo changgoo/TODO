@@ -297,8 +297,8 @@
           "affiliation": null,
           "email": "osase@princeton.edu",
           "host": "Chang-Goo Kim",
-          "title": null,
-          "abstract": null,
+          "title": "Where's the Gas Going? Observational and Theoretical Perspectives on Ejective & Preventative Feedback in Galaxies",
+          "abstract": "Galaxies regulate star formation through the baryon cycle, the continuous exchange of mass and energy with their surroundings. Understanding this process requires connecting theoretical predictions to direct observations of gas flows. Using a new semi-analytic model calibrated to the baryon cycle modeled in the IllustrisTNG simulations, I will show that realistic galaxy populations require strong stellar and black hole feedback that drives gas out of galaxies and their halos. The key question is whether such strong feedback occurs in nature, and if so, how it operates. Multi-wavelength observations from ALMA, Chandra, HST, JWST, and MUSE now allow us to probe the gas within and around galaxies in unprecedented detail. I will present observations of massive galaxies in clusters, one of the best environments for studying the baryon cycle, showing that black hole feedback drives powerful jets that heat the surrounding gas and uplift large amounts of it. Much of this gas is expected to remain bound to the halo and eventually return to the galaxy, where it can fuel future star formation and black hole activity. These results favor a fountain-flow, preventative view of feedback over a purely ejective picture. To conclude, I will discuss how combining high-resolution observations across diverse galaxy populations with detailed simulations can reconcile these different perspectives on feedback and constrain flexible models for the large-volume surveys of the Rubin era.",
           "location": "Dome Room",
           "notes": null
         },

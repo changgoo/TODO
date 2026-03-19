@@ -1,6 +1,6 @@
 # Daily To-Do List
 
-**Last updated:** 2026-03-16
+**Last updated:** 2026-03-19
 
 ---
 
@@ -18,10 +18,10 @@
         - [x] §3.1 Global Statistics
         - [x] §3.2 Probability Density Functions and Joint Statistics
         - [x] §3.3 Gas Density and Velocity Power Spectra
-    - [ ] §4 FSD Sensitivity to Correlation Time
-        - [ ] §4.1 Qualitative Differences
-        - [ ] §4.2 Time Evolution of Variables
-        - [ ] §4.3 Probability Density Function Dependence on Correlation Time
+    - [x] §4 FSD Sensitivity to Correlation Time
+        - [x] §4.1 Qualitative Differences
+        - [x] §4.2 Time Evolution of Variables
+        - [x] §4.3 Probability Density Function Dependence on Correlation Time
     - [ ] §5 Summary and Discussion
     - [ ] §6 Limitations and Scope
     - [ ] §7 Conclusion

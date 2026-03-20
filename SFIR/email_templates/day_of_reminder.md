@@ -8,13 +8,13 @@ subject: "SFIR Seminar by {{speaker_name}} — Starting in 1 Hour"
 
 Dear SFIR members,
 
-Just a reminder that today's SFIR seminar starts in **one hour**:
+Just a reminder that today's SFIR seminar starts in one hour:
 
-**Speaker:** {{speaker_name}} ({{affiliation}})
-**Title:** {{title}}
-**Time:** {{time}} today ({{label}})
-**Location:** {{location}}
-**Zoom:** https://princeton.zoom.us/j/99592759045
+Speaker: {{speaker_name}} ({{affiliation}})
+Title: {{title}}
+Time: {{time}} today ({{label}})
+Location: {{location}}
+Zoom: https://princeton.zoom.us/j/99592759045
 
 See you there!
 

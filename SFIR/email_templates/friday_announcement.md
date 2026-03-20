@@ -10,20 +10,16 @@ Dear SFIR members,
 
 A reminder that we have a seminar talk on Monday:
 
-**Speaker:** {{speaker_name}} ({{affiliation}})
-**Title:** {{title}}
-**Date:** {{label}}
-**Time:** {{time}}
-**Location:** {{location}}
-**Zoom:** https://princeton.zoom.us/j/99592759045
+Speaker: {{speaker_name}} ({{affiliation}})
+Title: {{title}}
+Date: {{label}}
+Time: {{time}}
+Location: {{location}}
+Zoom: https://princeton.zoom.us/j/99592759045
 
----
-
-**Abstract:**
+Abstract:
 
 {{abstract}}
-
----
 
 We hope to see many of you there!
 

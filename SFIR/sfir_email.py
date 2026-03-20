@@ -115,6 +115,9 @@ def send_email(to_email, subject, body, cc_emails=None):
         "from": {"email": FROM_EMAIL, "name": FROM_NAME},
         "subject": subject,
         "content": [{"type": "text/plain", "value": body}],
+        "tracking_settings": {
+            "click_tracking": {"enable": False, "enable_text": False},
+        },
     }
     req = urllib.request.Request(
         "https://api.sendgrid.com/v3/mail/send",

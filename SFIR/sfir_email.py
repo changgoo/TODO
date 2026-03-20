@@ -78,7 +78,7 @@ def render_template(template_path, talk, schedule):
 
     body = body.strip()
     speaker = talk.get("speaker") or ""
-    affiliation = talk.get("affiliation") or ""
+    affiliation = talk.get("affiliation") or "Princeton"
     label = talk.get("label") or ""
     date_short = label.replace("Monday, ", "")
 

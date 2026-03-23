@@ -21,7 +21,7 @@ The canonical task list lives in GitHub Issue #1 (`changgoo/TODO`), not in `READ
 - `SFIR/email_templates/` — Three email templates: `speaker_reminder.md`, `friday_announcement.md`, `day_of_reminder.md`
 - `.github/workflows/sfir-speaker-reminder.yml` — Daily cron (9 AM ET); emails speaker 7 days before talk to request title/abstract
 - `.github/workflows/sfir-friday-announcement.yml` — Friday cron (9 AM ET); emails sfir@princeton.edu with next Monday's talk
-- `.github/workflows/sfir-day-of-reminder.yml` — Monday cron (2 PM ET); emails sfir@princeton.edu 1 hour before talk (Spring talks at 3 PM)
+- `.github/workflows/sfir-day-of-reminder.yml` — Monday cron (9 AM ET); emails sfir@princeton.edu on the morning of the talk
 
 ## Workflow
 

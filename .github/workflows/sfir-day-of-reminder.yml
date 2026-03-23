@@ -1,9 +1,8 @@
-name: SFIR Day-of Reminder (1 hour before)
+name: SFIR Day-of Reminder (9 AM)
 
 on:
   schedule:
-    - cron: '0 18 * * 1'  # 2 PM ET every Monday (EDT=UTC-4), 1 hour before 3 PM Spring talks
-                           # Fall talks are at 4 PM — for those weeks, trigger manually or adjust cron
+    - cron: '0 13 * * 1'  # 9 AM ET every Monday (EDT=UTC-4)
   workflow_dispatch:
 
 jobs:

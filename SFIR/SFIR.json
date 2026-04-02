@@ -323,8 +323,8 @@
           "affiliation": "UCSB/CCA",
           "email": "ikaul@ucsb.edu",
           "host": "Chang-Goo Kim",
-          "title": null,
-          "abstract": null,
+          "title": "Dynamical Evidence for Cooling-Induced Entrainment in a Runaway Supermassive Black Hole Tail",
+          "abstract": "Recently, JWST observations confirmed the first runaway supermassive black hole (RBH-1) moving at ~950 km s−1 through the ambient hot circumgalactic medium (CGM). This RBH-1 left behind a 62 kpc long trail of cold H𝛼 and [OIII] emitting gas in its wake of radius 0.7 kpc and a velocity gradient of ~200 km s−1 along its length. This bears uncanny resemblance to cold tails formed in simulations of cold clouds embedded in hot winds in the context of galactic winds and the CGM. Using 3D hydrodynamical simulations with radiative cooling, along with theoretical predictions from turbulent mixing layer theory, I model the coherent downstream wake. I will show that the observed velocity gradient in the tail is naturally and quantitatively explained by accretion induced drag from radiative mixing layers.  Additionally I will show how this drag can be inferred from observables. These results provide the first dynamical evidence for cooling-induced entrainment in an astrophysical system and paves way for such analyses in other environments. I will also show some remaining mysteries about the origin of cold gas in this system.",
           "location": "Dome Room",
           "notes": null
         },

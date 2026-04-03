@@ -10,14 +10,11 @@ Usage:
 """
 
 import argparse
-import json
 import os
-import urllib.request
-import urllib.error
 from datetime import date, datetime, timedelta
 import zoneinfo
 
-FROM_EMAIL = "changgoo@princeton.edu"
+FROM_EMAIL = "astrocoffee.princeton@gmail.com"
 FROM_NAME = "SFIR Seminar"
 SFIR_LIST = "sfir@princeton.edu"
 TZ = zoneinfo.ZoneInfo("America/New_York")
@@ -106,34 +103,30 @@ def render_template(template_path, talk, schedule):
 
 
 def send_email(to_email, subject, body, cc_emails=None):
-    api_key = os.environ["SENDGRID_API_KEY"]
-    personalization = {"to": [{"email": to_email}]}
+    """Send a plain-text email via Gmail SMTP.
+
+    Requires ``GMAIL_USER`` and ``GMAIL_APP_PASSWORD`` environment variables.
+    """
+    import smtplib
+    from email.mime.text import MIMEText
+    from email.mime.multipart import MIMEMultipart
+
+    gmail_user = os.environ["GMAIL_USER"]
+    app_password = os.environ["GMAIL_APP_PASSWORD"]
+
+    mime = MIMEMultipart()
+    mime["From"] = f"{FROM_NAME} <{gmail_user}>"
+    mime["To"] = to_email
+    mime["Subject"] = subject
     if cc_emails:
-        personalization["cc"] = [{"email": e} for e in cc_emails]
-    payload = {
-        "personalizations": [personalization],
-        "from": {"email": FROM_EMAIL, "name": FROM_NAME},
-        "subject": subject,
-        "content": [{"type": "text/plain", "value": body}],
-        "tracking_settings": {
-            "click_tracking": {"enable": False, "enable_text": False},
-        },
-    }
-    req = urllib.request.Request(
-        "https://api.sendgrid.com/v3/mail/send",
-        data=json.dumps(payload).encode(),
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        },
-        method="POST",
-    )
-    try:
-        with urllib.request.urlopen(req) as resp:
-            print(f"Sent to {to_email} — status {resp.status}")
-    except urllib.error.HTTPError as e:
-        print(f"SendGrid error {e.code}: {e.read().decode()}")
-        raise
+        mime["Cc"] = ", ".join(cc_emails)
+    mime.attach(MIMEText(body, "plain"))
+
+    recipients = [to_email] + (cc_emails or [])
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+        smtp.login(gmail_user, app_password)
+        smtp.sendmail(gmail_user, recipients, mime.as_string())
+    print(f"Sent to {to_email}")
 
 
 def notify_missing(subject, message, dry_run=False):
@@ -152,12 +145,19 @@ def main():
                         help="Speaker name to target (first, last, or full; case-insensitive). "
                              "Only used with --mode speaker.")
     parser.add_argument("--dry-run", action="store_true", help="Print email without sending")
+    parser.add_argument("--today", type=str, default=None, help="date to try (isoformat)")
     args = parser.parse_args()
 
     if args.speaker and args.mode != "speaker":
         parser.error("--speaker can only be used with --mode speaker")
 
-    today = datetime.now(TZ).date()
+    if args.today:
+        if args.dry_run:
+            today = date.fromisoformat(args.today)
+        else:
+            parser.error("--today can only be used with --dry-run")
+    else:
+        today = datetime.now(TZ).date()
     schedule = load_schedule()
     templates = os.path.join(REPO_ROOT, "SFIR", "email_templates")
 

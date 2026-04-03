@@ -12,12 +12,13 @@ jobs:
       - name: Fetch Q1 todos and send email
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
-          TO_EMAIL: ${{ secrets.SENDGRID_TO_EMAIL }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          TO_EMAIL: ${{ secrets.TO_EMAIL }}
           REPO: ${{ github.repository }}
         run: |
           python3 - <<'PYEOF'
-          import os, json, urllib.request, subprocess
+          import os, subprocess
 
           import re, datetime, zoneinfo
 
@@ -79,29 +80,23 @@ jobs:
           </div>
           """
 
-          payload = {
-              "personalizations": [{"to": [{"email": os.environ["TO_EMAIL"]}]}],
-              "from": {"email": os.environ["TO_EMAIL"], "name": "Daily TODO Reminder"},
-              "subject": f"Q1 Priorities for {date_str}",
-              "content": [
-                  {"type": "text/plain", "value": plain},
-                  {"type": "text/html",  "value": html},
-              ],
-          }
+          import smtplib
+          from email.mime.text import MIMEText
+          from email.mime.multipart import MIMEMultipart
 
-          req = urllib.request.Request(
-              "https://api.sendgrid.com/v3/mail/send",
-              data=json.dumps(payload).encode(),
-              headers={
-                  "Authorization": f"Bearer {os.environ['SENDGRID_API_KEY']}",
-                  "Content-Type": "application/json",
-              },
-              method="POST",
-          )
-          try:
-              with urllib.request.urlopen(req) as resp:
-                  print(f"Email sent! Status: {resp.status}")
-          except urllib.error.HTTPError as e:
-              print(f"SendGrid error {e.code}: {e.read().decode()}")
-              raise
+          gmail_user = os.environ["GMAIL_USER"]
+          app_password = os.environ["GMAIL_APP_PASSWORD"]
+          to_email = os.environ["TO_EMAIL"]
+
+          mime = MIMEMultipart("alternative")
+          mime["From"] = f"Daily TODO Reminder <{gmail_user}>"
+          mime["To"] = to_email
+          mime["Subject"] = f"Q1 Priorities for {date_str}"
+          mime.attach(MIMEText(plain, "plain"))
+          mime.attach(MIMEText(html, "html"))
+
+          with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+              smtp.login(gmail_user, app_password)
+              smtp.sendmail(gmail_user, [to_email], mime.as_string())
+          print("Email sent!")
           PYEOF

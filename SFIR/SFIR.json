@@ -1,7 +1,7 @@
 {
   "title": "Star Formation/ISM Rendezvous (SFIR) Schedule",
   "default_location": "Dome Room, Peyton Hall",
-  "default_time": "4:00 PM",
+  "default_time": "3:00 PM",
   "zoom": "https://princeton.zoom.us/j/99592759045",
   "coordinator": {
     "name": "Chang-Goo Kim",
@@ -336,8 +336,8 @@
           "affiliation": "IAS",
           "email": "nsoliman@ias.edu",
           "host": "Chang-Goo Kim",
-          "title": null,
-          "abstract": null,
+          "title": "Multiscale Collapse from GMCs to Circumstellar Disks",
+          "abstract": "Star formation spans scales from parsec-sized molecular clouds down to the inner regions of circumstellar disks. While classical models describe idealized, spherical collapse of isolated cores, observations show that stars form in highly filamentary, anisotropic flows shaped by turbulence and magnetic fields. In this talk, I will present magnetohydrodynamic STARFORGE simulations that resolve collapse from parsec to sub-AU scales, tracing how cloud-scale structure feeds the circumstellar disk. Our results show that most material is funneled along discrete filaments, imprinting variability and misalignment onto the disk. I will discuss how these large-scale flows influence disk properties, and compare the results to classical collapse scalings to assess the impact of filamentary accretion on protostellar growth and disk structure.",
           "location": "Dome Room",
           "notes": null
         },

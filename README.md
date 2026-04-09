@@ -22,14 +22,8 @@
         - [x] §4.1 Qualitative Differences
         - [x] §4.2 Time Evolution of Variables
         - [x] §4.3 Probability Density Function Dependence on Correlation Time
-    - [ ] §5 Summary and Discussion
-    - [ ] §6 Limitations and Scope
-    - [ ] §7 Conclusion
-    - [ ] Appendix: Resolution Dependence
-    - [ ] Appendix: Limitations to Momentum Injection Method
-    - [ ] Write detailed feedback summary
-    - [ ] Send feedback to Tej
-
+    - [x] §5 Summary and Discussion
+    
 - [ ] **Investigate CR work term**
     - [ ] Compare kinetic flux and CR work term
     - [x] Add thermal gas work term in zprof
@@ -40,29 +34,22 @@
     - [ ] Investigate active-ghost accretion mismatch in shear-periodic BCs
 
 
-- [ ] **Review MNRAS paper** *(next week)*
-    - [ ] Read abstract, intro, and methods
-    - [ ] Read results and figures
-    - [ ] Read discussion and conclusions
-    - [ ] Write referee report
-    - [ ] Submit review
+- [x] **Review MNRAS paper** *(next week)*
+    - [x] Read abstract, intro, and methods
+    - [x] Read results and figures
+    - [x] Read discussion and conclusions
+    - [x] Write referee report
+    - [x] Submit review
 
+- [ ] **Run simulations**
+    - [ ] start run high resolution simulations on anvile
 ---
 
 ## Q2 — Important, Not Urgent *(Schedule)*
 > Planning, growth, long-term projects
 
-- [ ] **Run simulations**
-    - [ ] (fill in specific runs)
-
 - [ ] **Code development**
     - [ ] (fill in specific tasks)
-
-- [ ] **Prepare LtU meeting** *(next week)*
-    - [ ] Define agenda and discussion topics
-    - [ ] Gather relevant results / updates to share
-    - [ ] Prepare slides or reference materials
-    - [ ] Send agenda to attendees
 
 - [ ] **Write TIGRESS-NCR-Paper II**
     - [ ] Finalize outline and section structure
@@ -99,11 +86,6 @@
     - [ ] Test
     - [ ] Document
 
-- [ ] **Think what Bob can do for us**
-    - [ ] Brainstorm list of potential tasks
-    - [ ] Match to Bob's skills / bandwidth
-    - [ ] Draft a clear task list to hand off
-
 ---
 
 ## Q4 — Not Urgent, Not Important *(Eliminate or Do Last)*
@@ -120,6 +102,7 @@
 - [x] Cosmia's paper — reviewed full draft (2026-03-11)
 - [x] HPE benchmark test — submitted, ran, and reported (2026-03-13)
 - [x] Sarah's paper revision — completed (2026-03-16)
+- [ ] 
 
 ---
 

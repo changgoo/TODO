@@ -16,6 +16,7 @@ from datetime import date, datetime, timedelta
 import zoneinfo
 
 FROM_EMAIL = "astrocoffee.princeton@gmail.com"
+CC_EMAIL = "changgoo@princeton.edu"
 FROM_NAME = "SFIR Seminar"
 SFIR_LIST = "sfir@princeton.edu"
 TZ = zoneinfo.ZoneInfo("America/New_York")
@@ -232,7 +233,7 @@ def main():
         template = os.path.join(templates, "day_of_reminder.md")
 
     subject, body = render_template(template, talk, schedule)
-    cc_emails = [FROM_EMAIL]
+    cc_emails = [CC_EMAIL]
     if args.mode in ("friday", "dayof") and talk.get("email"):
         cc_emails.append(talk["email"])
 

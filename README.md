@@ -28,12 +28,6 @@
     - [ ] Compare kinetic flux and CR work term
     - [x] Add thermal gas work term in zprof
 
-- [ ] **Inspect Sink Particle at Shear Boundary**
-    - [x] Check violation due to FOFC — inter-meshblock face fluxes not identical; fixed by skipping FOFC
-    - [x] Check violation in pure periodic BCs — noverlap_ not large enough to suppress ghost particle formation near active growing particle; fixed by noverlap_=NGHOST
-    - [ ] Investigate active-ghost accretion mismatch in shear-periodic BCs
-
-
 - [ ] **Run simulations**
     - [ ] start run high resolution simulations on Anvil
 ---
@@ -96,6 +90,7 @@
 - [x] HPE benchmark test — submitted, ran, and reported (2026-03-13)
 - [x] Sarah's paper revision — completed (2026-03-16)
 - [x] Review MNRAS paper — submitted referee report (2026-04-10)
+- [x] Inspect Sink Particle at Shear Boundary — all fixes done (2026-04-10)
 
 ---
 

@@ -34,15 +34,8 @@
     - [ ] Investigate active-ghost accretion mismatch in shear-periodic BCs
 
 
-- [x] **Review MNRAS paper** *(next week)*
-    - [x] Read abstract, intro, and methods
-    - [x] Read results and figures
-    - [x] Read discussion and conclusions
-    - [x] Write referee report
-    - [x] Submit review
-
 - [ ] **Run simulations**
-    - [ ] start run high resolution simulations on anvile
+    - [ ] start run high resolution simulations on Anvil
 ---
 
 ## Q2 — Important, Not Urgent *(Schedule)*
@@ -102,7 +95,7 @@
 - [x] Cosmia's paper — reviewed full draft (2026-03-11)
 - [x] HPE benchmark test — submitted, ran, and reported (2026-03-13)
 - [x] Sarah's paper revision — completed (2026-03-16)
-- [ ] 
+- [x] Review MNRAS paper — submitted referee report (2026-04-10)
 
 ---
 

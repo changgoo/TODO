@@ -23,7 +23,7 @@
 | Mon, Apr 13 | Nadine Soliman (IAS) | Chang-Goo Kim | Multiscale Collapse from GMCs to Circumstellar Disks |  |
 | Mon, Apr 20 | Shyam Menon (CCA) | Chang-Goo Kim | Lyman Alpha Radiation Pressure in Dense Star Clusters: Insights and Implications for the Early Universe |  |
 | Mon, Apr 27 | Zhaohuan Zhu (UNLV/IAS) | Chang-Goo Kim | The Inner Region of Protoplanetary Disks | Special Time! |
-| Mon, May 4 | Yurina Nakazato (CCA) | Chang-Goo Kim | — |  |
+| Mon, May 4 | Yurina Nakazato (CCA) | Chang-Goo Kim | Probing ISM Properties in EoR Galaxies: Insights from Cosmological Zoom-in Simulations and JWST/ALMA Observations |  |
 | Mon, May 11 | Mark Krumholz (ANU) | Chang-Goo Kim | — |  |
 
 ---

@@ -375,21 +375,21 @@
           "affiliation": "CCA",
           "email": "ynakazato@flatironinstitute.org",
           "host": "Chang-Goo Kim",
-          "title": null,
-          "abstract": null,
+          "title": "Probing ISM Properties in EoR Galaxies: Insights from Cosmological Zoom-in Simulations and JWST/ALMA Observations",
+          "abstract": "The unprecedented sensitivity and resolution of JWST and ALMA have transformed our view of the early Universe. At z > 6, we observe diverse galaxy morphologies, spatially inhomogeneous ISM, and most strikingly, an overabundance of UV-bright galaxies extending to z > 10. I present theoretical insights into these observations using the FirstLight cosmological zoom-in simulations. For massive galaxies (Ms >~ 1e9 Msun) at z = 6–9, we model HII regions for each stellar particle and calculate [OIII] emission using the radiative transfer code CLOUDY. High-redshift galaxies show roughly 5–10× stronger [OIII] emission than local star-forming galaxies at the same SFR, driven by high ionization parameters from young stellar populations. We derive emission line diagrams using rest-frame optical and far-infrared line ratios accessible with JWST and ALMA, showing these diagnostics can probe multi-phase HII regions. We also present spatially resolved dust attenuation curves, revealing systematic differences between clumps and diffuse regions. I will then address the overabundance of UV-bright galaxies at z > 10 through high star formation efficiencies in FirstLight and an analytical dusty outflow scenario, and outline ongoing JWST/ALMA observational collaborations and future multi-wavelength studies.",
           "location": "Dome Room",
           "notes": null
         },
         {
           "date": "2026-05-11",
           "label": "Monday, May 11",
-          "time": "3:00 PM",
+          "time": "3:30 PM",
           "speaker": "Mark Krumholz",
           "affiliation": "ANU",
           "email": "mark.krumholz@anu.edu.au",
           "host": "Chang-Goo Kim",
-          "title": null,
-          "abstract": null,
+          "title": "Metal transport in the interstellar and circumgalactic medium",
+          "abstract": "Observations over the past decade have revealed that galaxies lose many of the metals they produce to the circumgalactic medium, and that the metals they retain are arranged in complex patterns that go beyond simple radial gradients. Theoretical models for how metals move through and out of the interstellar medium to produce these distributions are still in their infancy. In this talk, I discuss current theoretical and numerical efforts to understand the processes that drive elemental distributions, which combine turbulent transport of metals within disks and loss of imperfectly-mixed metals from the disk into galactic winds. I highlight the major implications of this emerging picture for areas ranging from galaxy formation to stellar populations within the Milky Way.",
           "location": "Dome Room",
           "notes": null
         }
